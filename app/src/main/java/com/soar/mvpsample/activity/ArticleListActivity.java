@@ -88,6 +88,8 @@ public class ArticleListActivity extends BaseActivity<ArticleListPresenter> impl
         recyclerView.setAdapter(adapter = new AndroidPlayAdapter());
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
+
+        adapter.setItemClickListener(position ->showSnackbar(position+""));
     }
 
     private void initData() {

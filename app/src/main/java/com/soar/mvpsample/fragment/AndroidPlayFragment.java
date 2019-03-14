@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,10 +20,12 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.soar.mvpsample.R;
+import com.soar.mvpsample.activity.ArticleListActivity;
 import com.soar.mvpsample.adapter.AndroidPlayAdapter;
 import com.soar.mvpsample.adapter.HeaderFooterAdapter;
 import com.soar.mvpsample.base.BaseLazyFragment;
 import com.soar.mvpsample.bean.ArticlesBean;
+import com.soar.mvpsample.constant.RouteConstants;
 import com.soar.mvpsample.mvp.contract.AndroidPlayContract;
 import com.soar.mvpsample.mvp.presenter.AndroidPlayPresenter;
 import com.soar.mvpsample.utils.SnackbarUtil;
@@ -121,7 +124,11 @@ public class AndroidPlayFragment extends BaseLazyFragment<AndroidPlayPresenter> 
 
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
-        adapter.setItemClickListener(position -> ToastUtils.showToast(position + ""));
+        adapter.setItemClickListener(position -> ARouter.getInstance()
+                .build(RouteConstants.Music.ARTICLE)
+                .withInt(ArticleListActivity.CID, adapter.getItem(position).getChapterId())
+                .withString(ArticleListActivity.CHAPTER_NAME, adapter.getItem(position).getChapterName())
+                .navigation());
     }
 
     @Override
@@ -138,10 +145,10 @@ public class AndroidPlayFragment extends BaseLazyFragment<AndroidPlayPresenter> 
         if (datas != null && datas.size() > 0)
             banner.setImages(datas).start();
         Glide.with(context)
-                .load(datas.size()>=1?datas.get(1):null)
+                .load(datas.size() >= 1 ? datas.get(1) : null)
                 .into(ivBannerOne);
         Glide.with(context)
-                .load(datas.size()>=2?datas.get(2):null)
+                .load(datas.size() >= 2 ? datas.get(2) : null)
                 .into(ivBannerTwo);
     }
 

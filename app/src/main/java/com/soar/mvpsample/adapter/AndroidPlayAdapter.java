@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.soar.mvpsample.R;
-import com.soar.mvpsample.activity.ArticleListActivity;
 import com.soar.mvpsample.bean.ArticlesBean;
-import com.soar.mvpsample.constant.RouteConstants;
 
 import java.util.List;
 
@@ -68,12 +65,6 @@ public class AndroidPlayAdapter extends RecyclerView.Adapter<AndroidPlayAdapter.
         holder.textView2.setText(item.niceDate);
         holder.textView3.setText(" "+item.author);
 
-        holder.tvClassify.setOnClickListener(v ->
-                ARouter.getInstance()
-                        .build(RouteConstants.Music.ARTICLE)
-                        .withInt(ArticleListActivity.CID, item.getChapterId())
-                        .withString(ArticleListActivity.CHAPTER_NAME, item.getChapterName())
-                        .navigation());
         if (itemClickListener != null)
             holder.itemView.setOnClickListener(v -> itemClickListener.onItemClick(holder.getLayoutPosition()));
     }
