@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Your custom size defind by references, can be writted in anywhere, any module, any values/*.xml, for example: -->
+    <dimen name="left_gauge">@dimen/dp_16</dimen>
+    <dimen name="top_gauge">@dimen/dp_16</dimen>
+    <dimen name="cloud_footer">@dimen/dp_50</dimen>
+</resources>
