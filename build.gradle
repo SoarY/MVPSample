@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         apply from: "config.gradle"
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         //ButterKnife
         classpath thirdLibs.ButterKnifePLU
 
